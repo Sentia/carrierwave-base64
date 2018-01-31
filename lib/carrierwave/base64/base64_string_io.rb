@@ -3,7 +3,12 @@ module Carrierwave
     class Base64StringIO < StringIO
       attr_accessor :file_extension, :file_name
 
-      def initialize(encoded_file, file_name)
+      REGEX           = /\Adata:image\/.+;base64,/
+      ENCODE_DEFAULT  = "data:image/jpeg;base64"
+
+      def initialize(file_string, file_name)
+
+        encoded_file = default_encode(file_string)
         description, encoded_bytes = encoded_file.split(',')
 
         raise ArgumentError unless encoded_bytes
@@ -21,6 +26,11 @@ module Carrierwave
       end
 
       private
+
+      def default_encode file_string
+        return file_string if REGEX === file_string
+        return [ENCODE_DEFAULT, file_string].join(',')
+      end
 
       def get_file_extension(description)
         content_type = description.split(';base64').first

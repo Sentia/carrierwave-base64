@@ -1,3 +1,8 @@
+# Sentia fork
+
+- adapter does not check for presence of 'data' on the string
+- base64StringIo prefix file_string with default data jpeg if data encode is not present
+
 # carrierwave-base64 changelog
 
 ## 2.6.1

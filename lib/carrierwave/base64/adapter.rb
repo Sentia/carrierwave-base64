@@ -23,8 +23,7 @@ module Carrierwave
             send "#{attribute}_will_change!"
           end
 
-          return super(data) unless data.is_a?(String) &&
-                                    data.strip.start_with?('data')
+          return super(data) unless data.is_a?(String)
 
           filename = if options[:file_name].respond_to?(:call)
                        options[:file_name].call(self)
