@@ -1,8 +1,10 @@
 # Sentia fork
 
 - adapter does not check for presence of 'data' on the string
+- ability to pass string_to options to adapter:
+  in this case the adapter will not process but pass the string to a string_to attribute on the model.
+  This is used to process the encode with a background worker on an after_save callback
 - base64StringIo prefix file_string with default data jpeg if data encode is not present
-
 # carrierwave-base64 changelog
 
 ## 2.6.1

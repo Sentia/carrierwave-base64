@@ -31,7 +31,11 @@ module Carrierwave
                        options[:file_name]
                      end.to_s
 
-          super Carrierwave::Base64::Base64StringIO.new(data.strip, filename)
+          if options[:string_to]
+            send(options[:string_to].to_s + "=", {filename: filename, data: data.strip})
+          else
+            super Carrierwave::Base64::Base64StringIO.new(data.strip, filename)
+          end
         end
         # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
         # rubocop:enable Metrics/CyclomaticComplexity
