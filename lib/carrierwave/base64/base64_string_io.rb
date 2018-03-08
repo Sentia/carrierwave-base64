@@ -4,7 +4,7 @@ module Carrierwave
       attr_accessor :file_extension, :file_name
 
       REGEX           = /\Adata:image\/.+;base64,/
-      ENCODE_DEFAULT  = "data:image/jpeg;base64"
+      ENCODE_DEFAULT  = "data:image/png;base64"
 
       def initialize(file_string, file_name)
 
