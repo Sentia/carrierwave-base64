@@ -33,6 +33,8 @@ module Carrierwave
 
           if options[:string_to]
             send(options[:string_to].to_s + "=", {filename: filename, data: data.strip})
+          elsif options[:json_to]
+            send(options[:json_to].to_s + "=", {filename: filename, data: data.strip}.to_json)
           else
             super Carrierwave::Base64::Base64StringIO.new(data.strip, filename)
           end
